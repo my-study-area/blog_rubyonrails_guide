@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController
+  def index
+    @article = Article.find(params[:article_id])
+    @article.comments.new
+    render 'articles/show'
+  end
+
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.build(comment_params)
