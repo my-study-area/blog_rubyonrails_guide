@@ -7,6 +7,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.comments.build
     @comment = Comment.where(article_id: params[:id])
+    respond_to do |format|
+      format.html { render @articles, status: 200 }
+      format.json { render json: @articles, status: 200}
+    end
   end
 
   def new
