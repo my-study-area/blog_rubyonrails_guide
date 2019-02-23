@@ -8,23 +8,7 @@
 </p>
 
 <h2>Comments</h2>
-<%
-Article.find(@article.id).comments.map do |comment|
-%>
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-<p>
-  <%= link_to 'Destroy Comment', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?'}%>
-</p>
-
-<% end %>
+<%= render @article.comments.select{|comment| comment.id != nil}.sort {|x,y| y <=> x } %>
 
 <h2>Add a comment:</h2>
 <% if @article.comments.last.errors.any? %>
