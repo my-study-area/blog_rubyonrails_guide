@@ -1,8 +1,18 @@
 class CommentsController < ApplicationController
   def index
-    @article = Article.find(params[:article_id])
-    @article.comments.new
-    render 'articles/show'
+    begin
+      @article = Article.find(params[:article_id])
+      @article.comments.new
+      @comments = Comment.where(article_id: params[:article_id])
+    rescue
+      @article = {}
+      @comments = {}
+    end
+
+    respond_to do |format|
+      format.html { render 'articles/show', status: 200 }
+      format.json { render json: @comments , status: 200}
+    end
   end
 
   def create
