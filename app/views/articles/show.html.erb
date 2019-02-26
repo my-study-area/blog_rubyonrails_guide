@@ -8,9 +8,22 @@
 </p>
 
 <h2>Comments</h2>
-<%= render @article.comments %>
+<%= render @article.comments.select{|comment| comment.id != nil}.sort {|x,y| y <=> x } %>
 
 <h2>Add a comment:</h2>
+<% if @article.comments.last.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@article.comments.last.errors.count, "error") %> prohibited
+      this article from being saved:
+    </h2>
+    <ul>
+      <% @article.comments.last.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= render 'comments/form' %>
 
 
