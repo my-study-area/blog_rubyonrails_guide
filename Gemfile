@@ -59,6 +59,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rspec-expectations', '~> 3.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
