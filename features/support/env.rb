@@ -5,6 +5,23 @@
 # files.
 
 require 'cucumber/rails'
+require 'database_cleaner'
+require 'database_cleaner/cucumber'
+
+Capybara.app_host = "http://localhost:3000"
+Capybara.javascript_driver = :selenium
+Capybara.run_server = false
+
+# Configure the Chrome driver capabilities & register
+args = ['--disable-infobars','window-size=1600,1024']
+caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => args})
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      desired_capabilities: caps
+  )
+end
 
 # frozen_string_literal: true
 
@@ -57,4 +74,3 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-

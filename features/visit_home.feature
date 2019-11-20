@@ -1,5 +1,6 @@
 # language: pt
 
+@javascript
 Funcionalidade: Acessar a Home
 
 -Eu como visitante
