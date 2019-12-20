@@ -8,6 +8,8 @@ require 'cucumber/rails'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 
+World(FactoryBot::Syntax::Methods)
+
 Capybara.app_host = "http://localhost:3000"
 Capybara.javascript_driver = :selenium
 Capybara.run_server = false
