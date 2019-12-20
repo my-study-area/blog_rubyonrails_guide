@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :article do
-    title {'title'}
-    text {'text'}
+    title {FFaker::CheesyLingo.title}
+    text {FFaker::CheesyLingo.sentence}
   end
 end

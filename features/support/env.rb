@@ -10,19 +10,19 @@ require 'database_cleaner/cucumber'
 
 World(FactoryBot::Syntax::Methods)
 
-Capybara.app_host = "http://localhost:3000"
-Capybara.javascript_driver = :selenium
-Capybara.run_server = false
-
-# Configure the Chrome driver capabilities & register
-args = ['--disable-infobars','window-size=1600,1024']
-caps = Selenium::WebDriver::Remote::Capabilities.firefox()
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(
-      app,
-      browser: :firefox
-  )
-end
+# Capybara.app_host = "http://localhost:3000"
+# Capybara.javascript_driver = :selenium
+# Capybara.run_server = false
+#
+# # Configure the Chrome driver capabilities & register
+# args = ['--disable-infobars','window-size=1600,1024']
+# caps = Selenium::WebDriver::Remote::Capabilities.firefox()
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(
+#       app,
+#       browser: :firefox
+#   )
+# end
 
 # frozen_string_literal: true
 
