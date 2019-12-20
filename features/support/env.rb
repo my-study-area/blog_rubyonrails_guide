@@ -14,12 +14,11 @@ Capybara.run_server = false
 
 # Configure the Chrome driver capabilities & register
 args = ['--disable-infobars','window-size=1600,1024']
-caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => args})
+caps = Selenium::WebDriver::Remote::Capabilities.firefox()
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(
       app,
-      browser: :chrome,
-      desired_capabilities: caps
+      browser: :firefox
   )
 end
 
