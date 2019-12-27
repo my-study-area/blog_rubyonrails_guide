@@ -15,6 +15,5 @@ Quando("eu acesso a pagina de artigos") do
 end
 
 Entao("eu visualizo os {int} artigos") do |counter|
-  byebug
   page.assert_selector( 'tbody>tr', count: counter)
 end
