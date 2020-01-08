@@ -7,3 +7,8 @@ Feature: Manage Articles
     Given I have 3 articles
     When I visit articles page
     Then I should see the list of articles
+
+  Scenario: Adding a new article
+    Given I visit the new articles page
+    When I submit a new article
+    Then I should see the new book
