@@ -50,3 +50,17 @@ Then("I should see the article with the new title") do
   visit articles_path
   expect(page).to have_content @title_updated
 end
+
+When("I change de text of the article") do
+  visit articles_path
+  click_link "Edit"
+  expect(page).to have_content("Edit Article")
+  @text_updated = FFaker::CheesyLingo.sentence
+  fill_in "article_text", :with => @text_updated
+  click_button "Update Article"
+end
+
+Then("I should see the article with the new text") do
+  visit articles_path
+  expect(page).to have_content @text_updated
+end

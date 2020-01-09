@@ -17,3 +17,8 @@ Feature: Manage Articles
     Given I have a article
     When I change de title of the article
     Then I should see the article with the new title
+
+  Scenario: Updating the text of the article
+    Given I have a article
+    When I change de text of the article
+    Then I should see the article with the new text
