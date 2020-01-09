@@ -22,3 +22,8 @@ Feature: Manage Articles
     Given I have a article
     When I change de text of the article
     Then I should see the article with the new text
+
+  Scenario: Removing a article
+    Given I have a article
+    When I remove a article
+    Then I should not see it listining anymore

@@ -34,7 +34,8 @@ Then("I should see the new book") do
 end
 
 Given("I have a article") do
-  expect{create(:article)}.to change {Article.count}.by 1
+  @title = FFaker::CheesyLingo.title
+  expect{create(:article, title: @title)}.to change {Article.count}.by 1
 end
 
 When("I change de title of the article") do
@@ -63,4 +64,15 @@ end
 Then("I should see the article with the new text") do
   visit articles_path
   expect(page).to have_content @text_updated
+end
+
+When("I remove a article") do
+  visit articles_path
+  click_link "Destroy"
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then("I should not see it listining anymore") do
+  visit articles_path
+  expect(page).to_not have_content @title
 end
