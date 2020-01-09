@@ -32,3 +32,21 @@ Then("I should see the new book") do
   expect(page).to have_content @title
   expect(page).to have_content @text
 end
+
+Given("I have a article") do
+  expect{create(:article)}.to change {Article.count}.by 1
+end
+
+When("I change de title of the article") do
+  visit articles_path
+  click_link "Edit"
+  expect(page).to have_content("Edit Article")
+  @title_updated = FFaker::CheesyLingo.title
+  fill_in "article_title", :with => @title_updated
+  click_button "Update Article"
+end
+
+Then("I should see the article with the new title") do
+  visit articles_path
+  expect(page).to have_content @title_updated
+end

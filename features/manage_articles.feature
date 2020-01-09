@@ -12,3 +12,8 @@ Feature: Manage Articles
     Given I visit the new articles page
     When I submit a new article
     Then I should see the new book
+
+  Scenario: Updating the title of the article
+    Given I have a article
+    When I change de title of the article
+    Then I should see the article with the new title
