@@ -19,12 +19,10 @@ Then("I should see the list of comments this article") do
 end
 
 Given("I have an article") do
-  @title = FFaker::CheesyLingo.title
-  expect{create(:article, title: @title)}.to change {Article.count}.by 1
+  expect{@article = create(:article)}.to change {Article.count}.by 1
 end
 
 Given("I visit this article page") do
-  @article = create(:article)
   visit article_path(@article)
   expect(page).to have_content "Comments"
 end
@@ -40,4 +38,19 @@ end
 Then("I should see the comment in this article") do
   expect(page).to have_content @commenter
   expect(page).to have_content @body
+end
+
+Given("I have a comment in this article") do
+  expect { @comment = create(:comment, article_id: @article.id) }.to change {Comment.count}.by 1
+end
+
+When("I remove a comment") do
+  click_link "Destroy Comment"
+  page.driver.browser.switch_to.alert.accept
+end
+
+Then("I should not see the comment listining anymore") do
+  visit article_path(@article)
+  expect(page).to_not have_content @comment.commenter
+  expect(page).to_not have_content @comment.body
 end

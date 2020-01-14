@@ -13,3 +13,10 @@ Feature: Manage comments
     And I visit this article page
     When I submit a new comment
     Then I should see the comment in this article
+
+  Scenario: Removing a comment
+    Given I have an article
+    And I have a comment in this article
+    And I visit this article page
+    When I remove a comment
+    Then I should not see the comment listining anymore
