@@ -76,3 +76,14 @@ Then("I should not see it listining anymore") do
   visit articles_path
   expect(page).to_not have_content @title
 end
+
+Given("I am a registered user") do
+  @registred_user =  FactoryBot.create(:user)
+end
+
+Given("I am logged in") do
+  visit new_user_session_path
+  fill_in "user_email", with: @registred_user.email
+  fill_in "user_password", with: @registred_user.password
+  click_button "Log in"
+end

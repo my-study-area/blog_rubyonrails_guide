@@ -3,6 +3,10 @@ Feature: Manage Articles
   In order to manage my Articles
   I should be able to manage the Articles
 
+  Background:
+    Given I am a registered user
+    And I am logged in
+
   Scenario: Listing articles
     Given I have 3 articles
     When I visit articles page
