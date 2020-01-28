@@ -3,6 +3,10 @@ Feature: Manage comments
   In order to manage comments
   I should be able to manage the comments
 
+  Background:
+    Given I am a registered user
+    And I am logged in
+
   Scenario: Listing comments
     Given I have 3 comments in an article
     When I visit comments page from this article
