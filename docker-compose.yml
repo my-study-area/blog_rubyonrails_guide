@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:9.5'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+  app:
+    depends_on:
+      - db
+    build: .
+    command: bash start.sh
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/blog_rubyonrails_guide
+      - gems:/gems
+
+volumes:
+  postgres:
+  gems:
