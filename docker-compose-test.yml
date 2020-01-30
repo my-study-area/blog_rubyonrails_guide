@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:9.5'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+  test:
+    depends_on:
+      - 'db'
+      - 'selenium'
+    build: .
+    command: bash start.sh
+    volumes:
+      - .:/blog_rubyonrails_guide
+      - gems:/gems
+    environment:
+      - SELENIUM_HOST=selenium
+      - SELENIUM_PORT=4444
+      - TEST_APP_HOST=test
+      - TEST_PORT=3000
+      - RAILS_ENV=test
+    stdin_open: true
+    tty: true
+
+  selenium:
+    image: selenium/standalone-firefox-debug
+    logging:
+      driver: none
+    stdin_open: true
+    tty: true
+    ports: ['4444:4444', '5900:5900']
+
+volumes:
+  postgres:
+  gems:
