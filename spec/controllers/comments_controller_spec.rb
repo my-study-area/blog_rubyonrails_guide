@@ -19,6 +19,7 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to new_user_session_path
       end
     end
+  end
 
   describe 'As an logged user' do
     before(:each) do
@@ -62,7 +63,4 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
   end
-
-  end
-
 end
