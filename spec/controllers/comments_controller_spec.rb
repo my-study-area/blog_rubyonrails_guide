@@ -28,6 +28,14 @@ RSpec.describe CommentsController, type: :controller do
       sign_in @current_user
     end
 
+    context 'GET #index' do
+      it 'should be able to see three comments' do
+        article = FactoryBot.create(:article)
+        comment = FactoryBot.create_list(:comment, 3, article_id: article.id)
+        expect(Comment.count).to eq 3
+      end
+    end
+
     context 'POST #create' do
       it 'redirect to the article page' do
         article = FactoryBot.create(:article)
